@@ -1,0 +1,37 @@
+{
+    "manifest_version": 3,
+    "name": "Background color switcher",
+    "version": "1.0",
+    "description": "A simple extension that allows you to change all tabs background color.",
+    "permissions": [
+        "scripting",
+        "tabs",
+        "storage"
+    ],
+    "icons": {
+        "16": "icon16.png",
+        "48": "icon48.png",
+        "128": "icon128.png"
+    },
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "background": {
+      "service_worker": "background.js",
+      "type": "module"
+    },
+    "content_scripts": [{
+            "matches": ["<all_urls>"],
+            "js": ["content_scripts.js"],
+            "run_at": "document_start"
+    }],
+    "host_permissions": ["<all_urls>"],
+    "commands": {
+        "toggle": {
+            "suggested_key": {
+                "default": "Alt+Shift+W"
+            },
+            "description": "Toggle extension"
+        }
+    }
+}
